@@ -1,13 +1,12 @@
 import React from "react";
-// import Select from "react-select";
 import { Select, MenuItem } from "@material-ui/core";
 
 
 
-function CustomSelect({ type, handleChange, options }) {
+function CustomSelect({ type, changeHandler, options }) {
 
   return (
-    <Select value={type} onChange={handleChange}>
+    <Select value={type} onChange={changeHandler}>
       {options ? 
       options.map((opt) => {
         return <MenuItem key={opt.value} value={opt}>{opt.label}</MenuItem>

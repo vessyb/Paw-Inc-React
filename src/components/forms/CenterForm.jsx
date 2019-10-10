@@ -1,61 +1,76 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import FormCenterDetails from "./FormCenterDetails";
 import Confirm from "./Confirm";
 import Success from "./Success";
 
+function CenterForm() {
 
-export class CenterForm extends Component {
-  state = {
-    step: 1,
-    name: "",
-    type: null
+  const [form, setFormValue] = useState({name: '', type: {}});
+  const [step, setStep] = useState(1);
+  // state = {
+  //   step: 1,
+  //   name: "",
+  //   type: null
+  // };
+
+  const nextStep = () => {
+    setStep(step + 1);
   };
 
-  nextStep = () => {
-    const { step } = this.state;
-    this.setState({
-      step: step + 1
-    });
+  const prevStep = () => {
+    setStep(step - 1);
   };
 
-  prevStep = () => {
-    const { step } = this.state;
-    this.setState({
-      step: step - 1
-    });
-  };
+  // handleChange = input => e => {
+  //   this.setState({ [input]: e.target.value});
+  // };
 
-  handleChange = input => e => {
-    this.setState({ [input]: e.target.value});
-  };
+  const changeHandler = (fieldName) => (e) => {
+    const fieldState = {};
+    fieldState[fieldName] = e.target.value;
+    setFormValue({
+            ...form,
+            ...fieldState
+            }
+        );
+        console.log('state', form);
+  }
 
-  render() {
-    const { step } = this.state;
-    const { name, type } = this.state;
+    const { name, type } = form;
     // that way we can pass the values into each component
     const values = { name, type };
+    // return (
+    //   <FormCenterDetails
+    //     type={type}
+    //     nextStep={nextStep}
+    //     prevStep={prevStep}
+    //     changeHandler={changeHandler}
+    //     values={values}
+    //   />
+    // );
     switch (step) {
       case 1:
         return (
           <FormCenterDetails
-            nextStep={this.nextStep}
-            prevStep={this.prevStep}
-            handleChange={this.handleChange}
+            type={type}
+            nextStep={nextStep}
+            prevStep={prevStep}
+           changeHandler={changeHandler}
             values={values}
           />
         );
       case 2:
         return (
           <Confirm
-            nextStep={this.nextStep}
-            prevStep={this.prevStep}
+          type={type}
+            nextStep={nextStep}
+            prevStep={prevStep}
             values={values}
           />
         );
       case 3:
         return <Success />;
     }
-  }
 }
 
 export default CenterForm;

@@ -1,7 +1,7 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
 
-export default function TextInput({ name, handleChange }) {
+export default function TextInput({ name, changeHandler }) {
   // const [values, setValues] = React.useState({
   //   name: ""
   // });
@@ -10,10 +10,10 @@ export default function TextInput({ name, handleChange }) {
   //   setValues({ ...values, [name]: event.target.value });
   // };
 
-  console.log(handleChange)
+  console.log(changeHandler)
   return (
     <TextField
-      onChange={handleChange}
+      onChange={changeHandler}
       label="Name"
       defaultValue={name}
     />

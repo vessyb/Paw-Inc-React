@@ -1,32 +1,27 @@
-import React, { Component } from "react";
-import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
+import React from "react";
 import AppBar from "@material-ui/core/AppBar";
 
 
-export class Success extends Component {
-  continue = e => {
+function Success(props) {
+
+  const forward = e => {
     e.preventDefault();
     // process form // send the data to the api (backend)
-    this.props.nextStep();
+    props.nextStep();
   };
 
-  back = e => {
+  const back = e => {
     e.preventDefault();
-    this.props.prevStep();
+    props.prevStep();
   };
 
-  render() {
     return (
-      <MuiThemeProvider>
         <React.Fragment>
           <AppBar title="Success"></AppBar>
           <h1>Thank you for your submission</h1>
           <h1>You will get an email with further instructions.</h1>
-          {/* <TextInput /> */}
         </React.Fragment>
-      </MuiThemeProvider>
     );
-  }
 }
 
 export default Success;

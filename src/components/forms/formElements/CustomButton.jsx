@@ -11,13 +11,12 @@ const styles = makeStyles(() => ({
     }
 }));
 
-export default function CustomButton({ buttonColor, direction, buttonName}) {
+function CustomButton({ direction, buttonName}) {
 
     let classes = styles()
   return (
     <Button
       variant="contained"
-      color={buttonColor}
       className={classes.button}
       onClick={direction}
     >
@@ -26,4 +25,4 @@ export default function CustomButton({ buttonColor, direction, buttonName}) {
   );
 }
 
-// export default withStyles(styles)(CustomButton);
+export default CustomButton;

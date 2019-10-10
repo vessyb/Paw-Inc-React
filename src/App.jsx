@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import Footer from "./components/layout/Footer";
 import Header from "./components/layout/Header";
 import { BrowserRouter as Router } from "react-router-dom";
-import { CenterForm } from "./components/forms/CenterForm";
 import Portal from "./components/Portal/Portal";
 import Toggle from "./components/Toggle";
+import CenterForm from "./components/forms/CenterForm";
 
 import "./App.css";
 import RouteSwitch from "./routes/RouteSwitch";
