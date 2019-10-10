@@ -7,11 +7,6 @@ function CenterForm() {
 
   const [form, setFormValue] = useState({name: '', type: {}});
   const [step, setStep] = useState(1);
-  // state = {
-  //   step: 1,
-  //   name: "",
-  //   type: null
-  // };
 
   const nextStep = () => {
     setStep(step + 1);
@@ -20,10 +15,6 @@ function CenterForm() {
   const prevStep = () => {
     setStep(step - 1);
   };
-
-  // handleChange = input => e => {
-  //   this.setState({ [input]: e.target.value});
-  // };
 
   const changeHandler = (fieldName) => (e) => {
     const fieldState = {};
@@ -39,15 +30,6 @@ function CenterForm() {
     const { name, type } = form;
     // that way we can pass the values into each component
     const values = { name, type };
-    // return (
-    //   <FormCenterDetails
-    //     type={type}
-    //     nextStep={nextStep}
-    //     prevStep={prevStep}
-    //     changeHandler={changeHandler}
-    //     values={values}
-    //   />
-    // );
     switch (step) {
       case 1:
         return (
