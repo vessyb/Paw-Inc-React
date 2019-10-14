@@ -1,9 +1,10 @@
 import React from 'react'
+import CustomForm from "../forms/CustomForm";
 
 export default function Centers() {
     return (
-        <div>
-            
-        </div>
+        <React.Fragment>
+            <CustomForm sectionType="centers"></CustomForm>
+        </React.Fragment>
     )
 }

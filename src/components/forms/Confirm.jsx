@@ -1,35 +1,22 @@
 import React from "react";
-import AppBar from "@material-ui/core/AppBar";
-import {List, ListItemText} from "@material-ui/core";
-import CustomButton from "./formElements/CustomButton";
+import { List, ListItemText } from "@material-ui/core";
+import CustomDialog from "../Dialog/CustomDialog";
 
 function Confirm(props) {
 
-  const forward = (e) => {
-    e.preventDefault();
-    // process form // send the data to the api (backend)
-    props.nextStep();
-  };
-
-  const back = (e) => {
-    e.preventDefault();
-    props.prevStep();
-  };
-
-    const {
-      values: { name, type }
-    } = props;
-    return (
-        <React.Fragment>
-          <AppBar title="Confirm Center Data"></AppBar>
+  const {
+    values: { name, type }
+  } = props;
+  return (
+    <React.Fragment>
+        <CustomDialog>
           <List>
             <ListItemText primary="Name" secondary={name}></ListItemText>
             <ListItemText primary="Type" secondary={type.value}></ListItemText>
           </List>
-          <CustomButton buttonName="Confirm & Continue" direction={forward} />
-          <CustomButton buttonName="Go back" direction={back} />
-        </React.Fragment>
-    );
+      </CustomDialog>
+    </React.Fragment>
+  );
 }
 
 export default Confirm;

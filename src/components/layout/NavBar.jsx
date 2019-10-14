@@ -9,6 +9,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import { Link } from "react-router-dom";
 
 export default function NavBar() {
+
   const classes = useStyles();
   const [state, setState] = React.useState({
     left: false
@@ -34,8 +35,8 @@ export default function NavBar() {
     >
       <List>
         {["Home", "Centers", "Animals", "About"].map((text, index) => (
-            <Link to={`/${text.toLowerCase()}`}>
-                 <ListItem button key={text}>
+            <Link key={text} to={`/${text.toLowerCase()}`}>
+                 <ListItem button >
                  <ListItemText primary={text} />
                  <Divider />
                  </ListItem>

@@ -1,10 +1,12 @@
-import React from 'react';
+import React from "react";
+import CustomForm from "../forms/CustomForm";
 
-export default function Animals() {
-
-    return (
-        <React.fragment>
-
-        </React.fragment>
-    )
+function Animals() {
+  return (
+    <React.Fragment>
+      <CustomForm sectionType="animals"></CustomForm>
+    </React.Fragment>
+  );
 }
+
+export default Animals;

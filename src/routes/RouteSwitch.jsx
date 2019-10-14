@@ -9,10 +9,10 @@ export default function RouteSwitch() {
   return (
     <React.Fragment>
       <Switch>
-        <Route exact path="/home" component={Home}></Route>
-        <Route exact path="/about" component={About}></Route>
-        <Route exact path="/centers" component={Centers}></Route>
-        <Route exact path="/animals" component={Animals}></Route>
+        <Route  path="/home" component={Home}></Route>
+        <Route  path="/about" component={About}></Route>
+        <Route  path="/centers" component={Centers}></Route>
+        <Route  path="/animals" component={Animals}></Route>
       </Switch>
     </React.Fragment>
   );
