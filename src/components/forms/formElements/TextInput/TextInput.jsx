@@ -1,15 +1,15 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
 
-function TextInput({ name, changeHandler }) {
+function TextInput({ name, handleNameInputChange}) {
 
-  console.log(changeHandler)
   return (
     <TextField
       required
-      onChange={changeHandler}
+      id="name"
+      onChange={handleNameInputChange}
       label="Name"
-      defaultValue={name}
+      value={name}
     />
   );
 }

@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import {
   Dialog,
   DialogContent,
-  DialogActions,
   Button
 } from "@material-ui/core";
 
-function CustomDialog({ children }) {
+function CustomDialog({ children, onDialogOpen = () => {} }) {
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
     setOpen(true);
+    onDialogOpen();
   };
 
   const handleClose = () => {
@@ -22,21 +22,16 @@ function CustomDialog({ children }) {
         Register
       </Button>
       <Dialog PaperProps={dialogStyle} open={open} onClose={handleClose}>
-        <DialogContent>{children}</DialogContent>
-        <DialogActions>
-          <Button variant="outlined" onClick={handleClose}>
-            Submit
-          </Button>
-        </DialogActions>
+          <DialogContent>{children}</DialogContent>    
       </Dialog>
     </React.Fragment>
   );
 }
 
 const dialogStyle = {
-    margin: "20% auto",
-    padding: "20px",
-    width: "70%",
-}
+  margin: "20% auto",
+  padding: "20px",
+  width: "70%"
+};
 
 export default CustomDialog;
