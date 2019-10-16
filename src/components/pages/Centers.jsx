@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import CenterForm from "../forms/CenterForm";
 import axios from 'axios';
+import CentersTable from '../tables/CentersTable';
+
+const headCells = [
+    { id: "name",  disablePadding: true, label: "Name" },
+    { id: "type",  disablePadding: true, label: "Type"}
+]
 
 export default function Centers() {
     const [centers, setCenters] = useState([]);
@@ -15,6 +21,7 @@ export default function Centers() {
 
     return (
         <React.Fragment>
+            <CentersTable centers={centers} headCells={headCells}/>
             <CenterForm />
         </React.Fragment>
     )

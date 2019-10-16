@@ -44,7 +44,7 @@ function AnimalForm(props) {
         },
         {
           headers: {
-            Accept: "application/json, text/plain, */*",
+            "Accept": "application/json, text/plain, */*",
             "Content-Type": "application/json"
           }
         }
