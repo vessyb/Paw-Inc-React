@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import TextInput from "./formElements/TextInput/TextInput";
-import CustomDialog from "../Dialog/CustomDialog";
 import axios from "axios";
 import Button from "@material-ui/core/Button";
 import Select from "@material-ui/core/Select";
@@ -52,25 +51,22 @@ function CenterForm() {
   };
 
   return (
-    <CustomDialog>
       <form>
         <TextInput handleNameInputChange={handleNameInputChange} />
-
         <Select
           id="type"
           value={type}
           displayEmpty={true}
           onChange={handleTypeInputChange}
+          fullWidth
         >
           <MenuItem value="cleansing">Cleansing</MenuItem>
           <MenuItem value="adoption">Adoption</MenuItem>>
         </Select>
-
         <Button variant="outlined" type="submit" onClick={handleSubmit}>
           Submit
         </Button>
       </form>
-    </CustomDialog>
   );
 }
 

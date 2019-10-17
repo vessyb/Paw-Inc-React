@@ -1,12 +1,15 @@
 import React from "react";
 import TableHeader from "./tableElements/TableHeader";
 import { Table, TableBody, TableRow, TableCell } from "@material-ui/core";
+import { TableStyles } from "./styles";
 
 function CentersTable(props) {
   const { centers, headCells } = props;
+  const classes = TableStyles();
+
   return (
-    <React.Fragment>
-      <Table size="medium">
+    <div className={classes.tableDiv}>
+      <Table size="medium" className={classes.table}>
         <TableHeader headCells={headCells} rowCount={centers.length} />
         <TableBody>
           {centers.map((center, index) => {
@@ -21,7 +24,7 @@ function CentersTable(props) {
           })}
         </TableBody>
       </Table>
-    </React.Fragment>
+    </div>
   );
 }
 

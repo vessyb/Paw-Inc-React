@@ -10,6 +10,7 @@ function TextInput({ name, handleNameInputChange}) {
       onChange={handleNameInputChange}
       label="Name"
       value={name}
+      fullWidth
     />
   );
 }

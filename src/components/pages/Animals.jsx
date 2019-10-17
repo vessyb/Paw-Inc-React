@@ -3,6 +3,8 @@ import AnimalForm from "../forms/AnimalForm";
 import AnimalsTable from "../tables/AnimalsTable";
 import axios from "axios";
 import { Button } from "@material-ui/core";
+import { BodyStyles } from "./styles";
+import CustomDialog from "../Dialog/CustomDialog";
 
 const headCells = [
   { id: "name", disablePadding: true, label: "Name" },
@@ -14,7 +16,18 @@ const headCells = [
 function Animals() {
   const [animals, setAnimals] = useState([]);
   const [cleansingCenters, setCleansingCenters] = useState([]);
-  const [selected, setSelected] = useState([]);
+  const [open, setOpen] = useState(false);
+  const classes = BodyStyles();
+
+  let selected = [];
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   useEffect(() => {
     axios.get("http://localhost:8080/animals").then(response => {
@@ -40,19 +53,15 @@ function Animals() {
   }, []);
 
   const handleCheckboxClick = (event, animal) => {
-    let temp = selected;
     animal.checked = !animal.checked;
-    if (animal.checked === false) {
-      temp.filter(elem => elem !== animal);
-      setSelected(temp);
+    if (animal.checked === true) {
+      selected.push(animal);
     } else {
-      temp.push(animal);
-      setSelected(temp);
+      selected = selected.filter(elem => elem.animalId !== animal.animalId);
     }
   };
 
   const sendForCleansing = () => {
-    // console.log(selected);
     let animalIds = [];
     selected.forEach(animal => {
       animalIds.push(animal.animalId);
@@ -107,20 +116,40 @@ function Animals() {
   };
 
   return (
-    <React.Fragment>
+    <div className={classes.mainElements}>
       <AnimalsTable
         animals={animals}
         headCells={headCells}
         onCheckboxClick={handleCheckboxClick}
+        className={classes.body}
       />
-      <AnimalForm cleansingCenters={cleansingCenters} />
-      <Button variant="outlined" onClick={sendForCleansing}>
-        Cleanse
-      </Button>
-      <Button variant="outlined" onClick={sendForAdoption}>
-        Adopt
-      </Button>
-    </React.Fragment>
+      <CustomDialog open={open} handleClose={handleClose}>
+        <AnimalForm cleansingCenters={cleansingCenters} />
+      </CustomDialog>
+      <div className={classes.buttonDiv}>
+        <Button
+          className={classes.button}
+          variant="outlined"
+          onClick={handleClickOpen}
+        >
+          Register
+        </Button>
+        <Button
+          className={classes.button}
+          variant="outlined"
+          onClick={sendForCleansing}
+        >
+          Cleanse
+        </Button>
+        <Button
+          className={classes.button}
+          variant="outlined"
+          onClick={sendForAdoption}
+        >
+          Adopt
+        </Button>
+      </div>
+    </div>
   );
 }
 

@@ -1,28 +1,28 @@
 import React, { useState } from "react";
-import {
-  Dialog,
-  DialogContent,
-  Button
-} from "@material-ui/core";
+import { Dialog, DialogContent, Button } from "@material-ui/core";
 
-function CustomDialog({ children, onDialogOpen = () => {} }) {
-  const [open, setOpen] = useState(false);
-  const handleClickOpen = () => {
-    setOpen(true);
-    onDialogOpen();
-  };
+function CustomDialog({ children, open, handleClose }) {
+  // const [open, setOpen] = useState(false);
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  //   onDialogOpen();
+  // };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
 
   return (
     <React.Fragment>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      {/* <Button variant="outlined" onClick={handleClickOpen}>
         Register
-      </Button>
-      <Dialog PaperProps={dialogStyle} open={open} onClose={handleClose}>
-          <DialogContent>{children}</DialogContent>    
+      </Button> */}
+      <Dialog
+        PaperProps={dialogStyle}
+        open={open}
+        onClose={handleClose}
+      >
+        <DialogContent>{children}</DialogContent>
       </Dialog>
     </React.Fragment>
   );

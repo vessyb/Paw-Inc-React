@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import TextInput from "./formElements/TextInput/TextInput";
-import CustomDialog from "../Dialog/CustomDialog";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
 import { MenuItem } from "@material-ui/core";
 import Select from "@material-ui/core/Select";
+import { FormStyles } from "./styles"
 
 function AnimalForm(props) {
   const [name, setName] = useState("");
   const [type, setType] = useState("");
   const [centerName, setCenterName] = useState("");
+  const classes = FormStyles();
 
   const { cleansingCenters } = props;
 
@@ -44,7 +45,7 @@ function AnimalForm(props) {
         },
         {
           headers: {
-            "Accept": "application/json, text/plain, */*",
+            Accept: "application/json, text/plain, */*",
             "Content-Type": "application/json"
           }
         }
@@ -61,25 +62,26 @@ function AnimalForm(props) {
   };
 
   return (
-    <CustomDialog>
-      <form>
-        <React.Fragment>
-          <TextInput handleNameInputChange={handleNameInputChange} />
+      <form className={classes.form}>
+          <TextInput className={classes.formEl} handleNameInputChange={handleNameInputChange} />
           <Select
             id="type"
             value={type}
             displayEmpty={true}
             onChange={handleTypeInputChange}
+            fullWidth
+            className={classes.formEl} 
           >
             <MenuItem value="dog">Dog</MenuItem>
             <MenuItem value="cat">Cat</MenuItem>
           </Select>
-
           <Select
             id="centerName"
             value={centerName}
             displayEmpty={true}
             onChange={handleCenterNameInputChange}
+            fullWidth
+            className={classes.formEl} 
           >
             {cleansingCenters.map(center => (
               <MenuItem key={center.name} value={center.name}>
@@ -87,13 +89,10 @@ function AnimalForm(props) {
               </MenuItem>
             ))}
           </Select>
-
           <Button variant="outlined" type="submit" onClick={handleSubmit}>
             Submit
           </Button>
-        </React.Fragment>
       </form>
-    </CustomDialog>
   );
 }
 

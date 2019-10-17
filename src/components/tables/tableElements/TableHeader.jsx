@@ -1,8 +1,10 @@
 import React from "react";
 import { TableHead, TableRow, TableCell } from "@material-ui/core";
+import { TableElementStyles } from "../styles";
 
 function TableHeader(props) {
   const { headCells } = props;
+  const classes = TableElementStyles();
 
   return (
     <React.Fragment>
@@ -10,7 +12,12 @@ function TableHeader(props) {
         <TableRow>
           {headCells.length > 2 && <TableCell></TableCell>}
           {headCells.map(headCell => (
-            <TableCell key={headCell.id} align="left" padding="default">
+            <TableCell
+              className={classes.tableHeader}
+              key={headCell.id}
+              align="left"
+              padding="default"
+            >
               {headCell.label}
             </TableCell>
           ))}

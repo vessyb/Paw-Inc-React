@@ -7,24 +7,26 @@ import {
   TableCell,
   Checkbox
 } from "@material-ui/core";
+import { TableStyles } from "./styles";
 
 function AnimalsTable(props) {
   const { animals, headCells, onCheckboxClick } = props;
+  const classes = TableStyles();
 
   const handleClick = (event, elem) => {
     onCheckboxClick(event, elem);
   };
 
   return (
-    <React.Fragment>
-      <Table size="medium">
-        <TableHeader headCells={headCells}  rowCount={animals.length} />
+    <div className={classes.tableDiv}>
+      <Table size="medium" className={classes.table}>
+        <TableHeader headCells={headCells} rowCount={animals.length} />
         <TableBody>
           {animals.map(animal => {
             return (
-              <TableRow hover role="checkbox" key={animal.id}>
+              <TableRow hover role="checkbox" key={animal.animalId}>
                 <TableCell padding="checkbox">
-                  <Checkbox
+                  <Checkbox 
                     onChange={event => handleClick(event, animal)}
                   ></Checkbox>
                 </TableCell>
@@ -41,7 +43,7 @@ function AnimalsTable(props) {
           })}
         </TableBody>
       </Table>
-    </React.Fragment>
+    </div>
   );
 }
 
