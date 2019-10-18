@@ -124,7 +124,10 @@ function Animals() {
         className={classes.body}
       />
       <CustomDialog open={open} handleClose={handleClose}>
-        <AnimalForm cleansingCenters={cleansingCenters} />
+        <AnimalForm
+          cleansingCenters={cleansingCenters}
+          handleClose={handleClose}
+        />
       </CustomDialog>
       <div className={classes.buttonDiv}>
         <Button

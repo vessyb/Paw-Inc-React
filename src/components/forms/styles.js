@@ -1,14 +1,17 @@
 import { makeStyles } from "@material-ui/styles";
 
 export const FormStyles = makeStyles(theme => ({
-   formEl: {
+  formEl: {
     margin: "8px"
-   },
-   form: {
+  },
+  form: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    width: "30rem",
-    height: "30rem"
-   }
-}))
+    width: "20rem",
+    height: "15rem"
+  },
+  button: {
+    marginTop: "30px"
+  }
+}));

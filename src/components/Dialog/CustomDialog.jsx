@@ -1,37 +1,17 @@
-import React, { useState } from "react";
-import { Dialog, DialogContent, Button } from "@material-ui/core";
+import React from "react";
+import { Dialog, DialogContent } from "@material-ui/core";
+import { DialogStyles } from "./styles";
 
 function CustomDialog({ children, open, handleClose }) {
-  // const [open, setOpen] = useState(false);
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  //   onDialogOpen();
-  // };
-
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
+  const classes = DialogStyles();
 
   return (
     <React.Fragment>
-      {/* <Button variant="outlined" onClick={handleClickOpen}>
-        Register
-      </Button> */}
-      <Dialog
-        PaperProps={dialogStyle}
-        open={open}
-        onClose={handleClose}
-      >
+      <Dialog className={classes.dialog} open={open} onClose={handleClose}>
         <DialogContent>{children}</DialogContent>
       </Dialog>
     </React.Fragment>
   );
 }
-
-const dialogStyle = {
-  margin: "20% auto",
-  padding: "20px",
-  width: "70%"
-};
 
 export default CustomDialog;

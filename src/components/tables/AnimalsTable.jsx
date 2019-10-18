@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import TableHeader from "./tableElements/TableHeader";
 import {
   Table,
@@ -26,7 +26,7 @@ function AnimalsTable(props) {
             return (
               <TableRow hover role="checkbox" key={animal.animalId}>
                 <TableCell padding="checkbox">
-                  <Checkbox 
+                  <Checkbox
                     onChange={event => handleClick(event, animal)}
                   ></Checkbox>
                 </TableCell>

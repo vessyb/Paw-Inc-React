@@ -4,10 +4,12 @@ import axios from "axios";
 import Button from "@material-ui/core/Button";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
+import { FormStyles } from "./styles";
 
-function CenterForm() {
+function CenterForm({ handleClose }) {
   const [name, setName] = useState("");
   const [type, setType] = useState("");
+  const classes = FormStyles();
 
   const handleNameInputChange = e => {
     setName(e.target.value);
@@ -29,8 +31,8 @@ function CenterForm() {
       .post(
         "http://localhost:8080/centers",
         {
-          name: name,
-          type: type
+          name,
+          type
         },
         {
           headers: {
@@ -48,25 +50,35 @@ function CenterForm() {
       });
 
     resetState();
+    handleClose();
   };
 
   return (
-      <form>
-        <TextInput handleNameInputChange={handleNameInputChange} />
-        <Select
-          id="type"
-          value={type}
-          displayEmpty={true}
-          onChange={handleTypeInputChange}
-          fullWidth
-        >
-          <MenuItem value="cleansing">Cleansing</MenuItem>
-          <MenuItem value="adoption">Adoption</MenuItem>>
-        </Select>
-        <Button variant="outlined" type="submit" onClick={handleSubmit}>
-          Submit
-        </Button>
-      </form>
+    <form className={classes.form}>
+      <TextInput
+        className={classes.formEl}
+        handleNameInputChange={handleNameInputChange}
+      />
+      <Select
+        className={classes.formEl}
+        id="type"
+        value={type}
+        displayEmpty={true}
+        onChange={handleTypeInputChange}
+        fullWidth
+      >
+        <MenuItem value="cleansing">Cleansing</MenuItem>
+        <MenuItem value="adoption">Adoption</MenuItem>>
+      </Select>
+      <Button
+        className={classes.button}
+        variant="outlined"
+        type="submit"
+        onClick={handleSubmit}
+      >
+        Submit
+      </Button>
+    </form>
   );
 }
 

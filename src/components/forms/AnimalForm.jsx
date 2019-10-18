@@ -4,15 +4,13 @@ import Button from "@material-ui/core/Button";
 import axios from "axios";
 import { MenuItem } from "@material-ui/core";
 import Select from "@material-ui/core/Select";
-import { FormStyles } from "./styles"
+import { FormStyles } from "./styles";
 
-function AnimalForm(props) {
+function AnimalForm({ cleansingCenters, handleClose }) {
   const [name, setName] = useState("");
   const [type, setType] = useState("");
   const [centerName, setCenterName] = useState("");
   const classes = FormStyles();
-
-  const { cleansingCenters } = props;
 
   const handleNameInputChange = e => {
     setName(e.target.value);
@@ -39,9 +37,9 @@ function AnimalForm(props) {
       .post(
         "http://localhost:8080/animals",
         {
-          name: name,
-          type: type,
-          centerName: centerName
+          name,
+          type,
+          centerName
         },
         {
           headers: {
@@ -59,40 +57,49 @@ function AnimalForm(props) {
       });
 
     resetState();
+    handleClose();
   };
 
   return (
-      <form className={classes.form}>
-          <TextInput className={classes.formEl} handleNameInputChange={handleNameInputChange} />
-          <Select
-            id="type"
-            value={type}
-            displayEmpty={true}
-            onChange={handleTypeInputChange}
-            fullWidth
-            className={classes.formEl} 
-          >
-            <MenuItem value="dog">Dog</MenuItem>
-            <MenuItem value="cat">Cat</MenuItem>
-          </Select>
-          <Select
-            id="centerName"
-            value={centerName}
-            displayEmpty={true}
-            onChange={handleCenterNameInputChange}
-            fullWidth
-            className={classes.formEl} 
-          >
-            {cleansingCenters.map(center => (
-              <MenuItem key={center.name} value={center.name}>
-                {center.name}
-              </MenuItem>
-            ))}
-          </Select>
-          <Button variant="outlined" type="submit" onClick={handleSubmit}>
-            Submit
-          </Button>
-      </form>
+    <form className={classes.form}>
+      <TextInput
+        className={classes.formEl}
+        handleNameInputChange={handleNameInputChange}
+      />
+      <Select
+        id="type"
+        value={type}
+        displayEmpty={true}
+        onChange={handleTypeInputChange}
+        fullWidth
+        className={classes.formEl}
+      >
+        <MenuItem value="dog">Dog</MenuItem>
+        <MenuItem value="cat">Cat</MenuItem>
+      </Select>
+      <Select
+        id="centerName"
+        value={centerName}
+        displayEmpty={true}
+        onChange={handleCenterNameInputChange}
+        fullWidth
+        className={classes.formEl}
+      >
+        {cleansingCenters.map(center => (
+          <MenuItem key={center.name} value={center.name}>
+            {center.name}
+          </MenuItem>
+        ))}
+      </Select>
+      <Button
+        className={classes.button}
+        variant="outlined"
+        type="submit"
+        onClick={handleSubmit}
+      >
+        Submit
+      </Button>
+    </form>
   );
 }
 

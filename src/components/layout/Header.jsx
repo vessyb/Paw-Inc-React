@@ -1,5 +1,4 @@
 import React from "react";
-import NavBar from "./NavBar";
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
@@ -12,12 +11,6 @@ import { HeaderStyles } from "./styles";
 function Header() {
   const classes = HeaderStyles();
   return (
-    //you need position sticky
-
-    // <header style={headerStyle}>
-    //   <NavBar/>
-    //   <h1 style={headingStyle}>Paw Inc.</h1>
-    // </header>
     <AppBar position="sticky">
       <Toolbar style={{ justifyContent: "space-between" }}>
         <h1>Paw Inc</h1>
@@ -25,7 +18,11 @@ function Header() {
           <nav>
             <List style={{ display: "flex" }}>
               {["Home", "Centers", "Animals", "About"].map((text, index) => (
-                <Link className={classes.links} key={text} to={`/${text.toLowerCase()}`}>
+                <Link
+                  className={classes.links}
+                  key={text}
+                  to={`/${text.toLowerCase()}`}
+                >
                   <ListItem button>
                     <ListItemText primary={text} />
                     <Divider />
@@ -39,20 +36,5 @@ function Header() {
     </AppBar>
   );
 }
-
-// const headerStyle = {
-//   display: "flex",
-//   alignItems: "center",
-//   justifyContent: "flex-start",
-//   flexDirection: "row",
-//   background: "#455A64",
-//   color: "white",
-//   padding: "10px",
-//   textAlign: "center"
-// };
-
-// const headingStyle = {
-//   marginLeft: "40%"
-// };
 
 export default Header;

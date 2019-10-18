@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/styles";
 export const TableElementStyles = makeStyles(theme => ({
   tableHeader: {
     fontWeight: "bolder",
-    fontSize: "1rem",
+    fontSize: "1rem"
   }
 }));
 
@@ -22,8 +22,7 @@ export const TableStyles = makeStyles(theme => ({
     fontVariant: "all-small-caps",
     fontSize: "initial",
     "& tr th": {
-      padding: "16px",
-      
+      padding: "16px"
     }
   }
 }));
