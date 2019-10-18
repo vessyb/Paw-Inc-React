@@ -81,7 +81,7 @@ function Animals() {
     handleClose();
   };
 
-  useEffect(() => {
+  const getAnimals = () => {
     axios.get("http://localhost:8080/animals").then(response => {
       setAnimals(
         response.data.map(animal => {
@@ -92,9 +92,9 @@ function Animals() {
       );
       console.log(animals);
     });
-  }, []);
+  };
 
-  useEffect(() => {
+  const getCleansingCenters = () => {
     axios.get("http://localhost:8080/centers").then(response => {
       setCleansingCenters(
         response.data.filter(
@@ -102,6 +102,11 @@ function Animals() {
         )
       );
     });
+  };
+
+  useEffect(() => {
+    getAnimals();
+    getCleansingCenters();
   }, []);
 
   const handleCheckboxClick = (event, animal) => {

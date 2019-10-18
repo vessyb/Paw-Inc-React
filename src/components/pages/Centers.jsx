@@ -58,7 +58,7 @@ export default function Centers() {
       )
       .then(res => {
         console.log(res);
-        setCenters([...centers, res.data])
+        setCenters([...centers, res.data]);
         console.log(res.data);
       })
       .catch(error => {
@@ -69,11 +69,15 @@ export default function Centers() {
     handleClose();
   };
 
-  useEffect(() => {
+  const getCenters = () => {
     axios.get("http://localhost:8080/centers").then(response => {
       setCenters(response.data);
       console.log(centers);
     });
+  };
+
+  useEffect(() => {
+    getCenters();
   }, []);
 
   return (
