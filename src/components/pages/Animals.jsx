@@ -17,6 +17,9 @@ function Animals() {
   const [animals, setAnimals] = useState([]);
   const [cleansingCenters, setCleansingCenters] = useState([]);
   const [open, setOpen] = useState(false);
+  const [name, setName] = useState("");
+  const [type, setType] = useState("");
+  const [centerName, setCenterName] = useState("");
   const classes = BodyStyles();
 
   let selected = [];
@@ -27,6 +30,55 @@ function Animals() {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleNameInputChange = e => {
+    setName(e.target.value);
+  };
+
+  const handleTypeInputChange = e => {
+    setType(e.target.value);
+  };
+
+  const handleCenterNameInputChange = e => {
+    setCenterName(e.target.value);
+  };
+
+  const resetState = () => {
+    setName("");
+    setType("");
+    setCenterName("");
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault();
+
+    axios
+      .post(
+        "http://localhost:8080/animals",
+        {
+          name,
+          type,
+          centerName
+        },
+        {
+          headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+          }
+        }
+      )
+      .then(res => {
+        console.log(res);
+        setAnimals([...animals, res.data]);
+        console.log(res.data);
+      })
+      .catch(error => {
+        console.log(error.response);
+      });
+
+    resetState();
+    handleClose();
   };
 
   useEffect(() => {
@@ -125,6 +177,12 @@ function Animals() {
       />
       <CustomDialog open={open} handleClose={handleClose}>
         <AnimalForm
+          type={type}
+          centerName={centerName}
+          handleSubmit={handleSubmit}
+          handleNameInputChange={handleNameInputChange}
+          handleTypeInputChange={handleTypeInputChange}
+          handleCenterNameInputChange={handleCenterNameInputChange}
           cleansingCenters={cleansingCenters}
           handleClose={handleClose}
         />

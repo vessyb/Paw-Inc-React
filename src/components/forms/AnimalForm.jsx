@@ -1,64 +1,20 @@
 import React, { useState } from "react";
 import TextInput from "./formElements/TextInput/TextInput";
 import Button from "@material-ui/core/Button";
-import axios from "axios";
 import { MenuItem } from "@material-ui/core";
 import Select from "@material-ui/core/Select";
 import { FormStyles } from "./styles";
 
-function AnimalForm({ cleansingCenters, handleClose }) {
-  const [name, setName] = useState("");
-  const [type, setType] = useState("");
-  const [centerName, setCenterName] = useState("");
+function AnimalForm({
+  cleansingCenters,
+  handleNameInputChange,
+  handleTypeInputChange,
+  handleCenterNameInputChange,
+  handleSubmit,
+  type,
+  centerName
+}) {
   const classes = FormStyles();
-
-  const handleNameInputChange = e => {
-    setName(e.target.value);
-  };
-
-  const handleTypeInputChange = e => {
-    setType(e.target.value);
-  };
-
-  const handleCenterNameInputChange = e => {
-    setCenterName(e.target.value);
-  };
-
-  const resetState = () => {
-    setName("");
-    setType("");
-    setCenterName("");
-  };
-
-  const handleSubmit = event => {
-    event.preventDefault();
-
-    axios
-      .post(
-        "http://localhost:8080/animals",
-        {
-          name,
-          type,
-          centerName
-        },
-        {
-          headers: {
-            Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json"
-          }
-        }
-      )
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-      })
-      .catch(error => {
-        console.log(error.response);
-      });
-
-    resetState();
-    handleClose();
-  };
 
   return (
     <form className={classes.form}>

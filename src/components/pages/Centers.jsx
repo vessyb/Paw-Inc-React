@@ -14,6 +14,8 @@ const headCells = [
 export default function Centers() {
   const [centers, setCenters] = useState([]);
   const [open, setOpen] = useState(false);
+  const [name, setName] = useState("");
+  const [type, setType] = useState("");
   const classes = BodyStyles();
 
   const handleClickOpen = () => {
@@ -22,6 +24,49 @@ export default function Centers() {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleNameInputChange = e => {
+    setName(e.target.value);
+  };
+
+  const handleTypeInputChange = e => {
+    setType(e.target.value);
+  };
+
+  const resetState = () => {
+    setName("");
+    setType("");
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault();
+
+    axios
+      .post(
+        "http://localhost:8080/centers",
+        {
+          name,
+          type
+        },
+        {
+          headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+          }
+        }
+      )
+      .then(res => {
+        console.log(res);
+        setCenters([...centers, res.data])
+        console.log(res.data);
+      })
+      .catch(error => {
+        console.log(error.response);
+      });
+
+    resetState();
+    handleClose();
   };
 
   useEffect(() => {
@@ -35,7 +80,12 @@ export default function Centers() {
     <div className={classes.mainElements}>
       <CentersTable centers={centers} headCells={headCells} />
       <CustomDialog open={open} handleClose={handleClose}>
-        <CenterForm />
+        <CenterForm
+          handleNameInputChange={handleNameInputChange}
+          handleTypeInputChange={handleTypeInputChange}
+          handleSubmit={handleSubmit}
+          type={type}
+        />
       </CustomDialog>
       <Button
         className={classes.button}

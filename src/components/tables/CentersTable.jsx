@@ -12,10 +12,10 @@ function CentersTable(props) {
       <Table size="medium" className={classes.table}>
         <TableHeader headCells={headCells} rowCount={centers.length} />
         <TableBody>
-          {centers.map((center, index) => {
+          {centers.map((center) => {
             return (
-              <TableRow hover tabIndex={-1} key={center.id}>
-                <TableCell component="th" id={index} scope="row" padding="none">
+              <TableRow hover key={center.id}>
+                <TableCell component="th" scope="row" padding="none">
                   {center.name}
                 </TableCell>
                 <TableCell align="left">{center.type}</TableCell>
