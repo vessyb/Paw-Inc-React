@@ -36,7 +36,7 @@ function AnimalsTable(props) {
                 <TableCell align="left">{animal.type}</TableCell>
                 <TableCell align="left">{animal.center}</TableCell>
                 <TableCell align="left">
-                  {animal.status.toLowerCase()}
+                  {animal.status}
                 </TableCell>
               </TableRow>
             );

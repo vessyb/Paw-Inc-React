@@ -136,7 +136,18 @@ function Animals() {
           }
         )
         .then(res => {
+          let data = res.data;
           console.log(res);
+          let updatedAnimals = animals.map((animal) => {
+            let animalIndex = data.findIndex((el) => el.animalId === animal.animalId);
+            if(animalIndex > -1) {
+              let animalToReturn = data[animalIndex];
+              animalToReturn.checked = false;
+              return animalToReturn;
+            }
+            return animal;
+          })
+          setAnimals([animals, ...updatedAnimals]);
           console.log(res.data);
         })
         .catch(error => {
@@ -162,8 +173,19 @@ function Animals() {
             }
           }
         )
-        .then(res => {
+        .then((res) => {
+          let data = res.data;
           console.log(res);
+          let updatedAnimals = animals.map((animal) => {
+            let animalIndex = data.findIndex((el) => el.animalId === animal.animalId);
+            if(animalIndex > -1) {
+              let animalToReturn = data[animalIndex];
+              animalToReturn.checked = false;
+              return animalToReturn;
+            }
+            return animal;
+          })
+          setAnimals([animals, ...updatedAnimals]);
           console.log(res.data);
         })
         .catch(error => {
